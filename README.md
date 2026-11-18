@@ -19,49 +19,51 @@ It is built on [dfa-variability](https://github.com/deemeetree/dfa) and [generat
 
 Requires Node.js 18+. The server runs locally over stdio, so you don't start it yourself: you register the command with your AI client and the client launches it.
 
-### From this folder (local clone)
-
-```sh
-cd natural-dynamics-mcp
-npm install
-npm test                     # optional: 7 tests, should all pass
-claude mcp add natural-dynamics -- node "$(pwd)/bin/natural-dynamics-mcp.js"
-```
-
-Then check it is connected with `claude mcp list`, or `/mcp` inside Claude Code. Add `--scope user` to `claude mcp add` to make it available in every project, not only the current one.
-
-### Claude Desktop, Cursor and other clients
-
-Add this to `claude_desktop_config.json`, `.cursor/mcp.json` or your client's MCP config, with the absolute path to your clone:
-
-```json
-{
-	"mcpServers": {
-		"natural-dynamics": {
-			"command": "node",
-			"args": ["/absolute/path/to/natural-dynamics-mcp/bin/natural-dynamics-mcp.js"]
-		}
-	}
-}
-```
-
-Restart the client after editing the file.
-
-### Once published to npm
+### Claude Code
 
 ```sh
 claude mcp add natural-dynamics -- npx -y natural-dynamics-mcp
 ```
 
-or `"command": "npx", "args": ["-y", "natural-dynamics-mcp"]` in a JSON config.
+`npx` downloads the [natural-dynamics-mcp](https://www.npmjs.com/package/natural-dynamics-mcp) package from npm on first use, so there is nothing to install beforehand. Add `--scope user` to make it available in every project, not only the current one. Check it is connected with `claude mcp list`, or `/mcp` inside Claude Code.
+
+### Claude Desktop, Cursor and other clients
+
+Add this to `claude_desktop_config.json`, `.cursor/mcp.json` or your client's MCP config, then restart the client:
+
+```json
+{
+	"mcpServers": {
+		"natural-dynamics": {
+			"command": "npx",
+			"args": ["-y", "natural-dynamics-mcp"]
+		}
+	}
+}
+```
+
+### Straight from GitHub, without npm
+
+```sh
+claude mcp add natural-dynamics -- npx -y github:noduslabs/mcp-server-natural-dynamics
+```
+
+### From a local clone
+
+```sh
+git clone https://github.com/noduslabs/mcp-server-natural-dynamics && cd mcp-server-natural-dynamics && npm install
+claude mcp add natural-dynamics -- node "$(pwd)/bin/natural-dynamics-mcp.js"
+```
+
+In a JSON config use `"command": "node", "args": ["/absolute/path/to/mcp-server-natural-dynamics/bin/natural-dynamics-mcp.js"]`.
 
 ### Try it without a client
 
 ```sh
-npx @modelcontextprotocol/inspector node bin/natural-dynamics-mcp.js
+npx @modelcontextprotocol/inspector npx -y natural-dynamics-mcp
 ```
 
-opens the MCP Inspector in the browser, where you can call both tools by hand. `npm start` runs the bare stdio server (it waits silently for an MCP client on stdin).
+opens the MCP Inspector in the browser, where you can call both tools by hand.
 
 ## Tools
 

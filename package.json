@@ -30,6 +30,14 @@
 	],
 	"author": "Dmitry Paranyushkin / Nodus Labs",
 	"license": "AGPL-3.0-or-later",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/noduslabs/mcp-server-natural-dynamics.git"
+	},
+	"homepage": "https://github.com/noduslabs/mcp-server-natural-dynamics",
+	"bugs": {
+		"url": "https://github.com/noduslabs/mcp-server-natural-dynamics/issues"
+	},
 	"dependencies": {
 		"@modelcontextprotocol/sdk": "^1.32.1",
 		"dfa-variability": "^2.4.0",
