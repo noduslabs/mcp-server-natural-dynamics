@@ -1,0 +1,39 @@
+{
+	"name": "natural-dynamics-mcp",
+	"version": "0.1.0",
+	"description": "MCP server that tells how natural a time series is (fractal 1/f dynamics vs static, predictable or too driven) and generates natural dynamics on demand.",
+	"main": "src/server.js",
+	"bin": {
+		"natural-dynamics-mcp": "bin/natural-dynamics-mcp.js"
+	},
+	"files": [
+		"bin",
+		"src"
+	],
+	"scripts": {
+		"start": "node bin/natural-dynamics-mcp.js",
+		"test": "node --test"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"keywords": [
+		"mcp",
+		"model-context-protocol",
+		"natural dynamics",
+		"fractal",
+		"dfa",
+		"pink noise",
+		"1/f",
+		"time series",
+		"variability"
+	],
+	"author": "Dmitry Paranyushkin / Nodus Labs",
+	"license": "AGPL-3.0-or-later",
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.32.1",
+		"dfa-variability": "^2.4.0",
+		"generate-fractal-signal": "^2.0.0",
+		"zod": "^4.6.7"
+	}
+}
