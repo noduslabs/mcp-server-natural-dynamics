@@ -112,7 +112,7 @@ function measure(values) {
 	return new DFA(values).compute(4, 0.25, 2, 16, 16, 0.25, "moderate");
 }
 
-function analyzeDynamics(params) {
+function analyzeNaturalDynamics(params) {
 	const { values, source } = resolveSeries(params);
 	if (values.length < MIN_POINTS) throw new Error(`The analysis needs at least ${MIN_POINTS} points; got ${values.length}.`);
 	const strictness = params.strictness || "moderate";
@@ -213,7 +213,7 @@ function generateNaturalDynamics(params = {}) {
 }
 
 module.exports = {
-	analyzeDynamics,
+	analyzeNaturalDynamics,
 	generateNaturalDynamics,
 	classify,
 	naturalness,

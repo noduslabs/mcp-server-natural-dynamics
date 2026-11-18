@@ -15,14 +15,14 @@ test("generate then analyze over MCP", async () => {
 	await Promise.all([server.connect(serverTransport), client.connect(clientTransport)]);
 
 	const { tools } = await client.listTools();
-	assert.deepStrictEqual(tools.map((t) => t.name).sort(), ["analyze_dynamics", "generate_natural_dynamics"]);
+	assert.deepStrictEqual(tools.map((t) => t.name).sort(), ["analyze_natural_dynamics", "generate_natural_dynamics"]);
 
 	const g = parse(await client.callTool({ name: "generate_natural_dynamics", arguments: { length: 256, seed: 11 } }));
 	assert.strictEqual(g.verdict, "natural");
-	const a = parse(await client.callTool({ name: "analyze_dynamics", arguments: { series: g.series } }));
+	const a = parse(await client.callTool({ name: "analyze_natural_dynamics", arguments: { series: g.series } }));
 	assert.strictEqual(a.verdict, "natural");
 
-	const bad = await client.callTool({ name: "analyze_dynamics", arguments: {} });
+	const bad = await client.callTool({ name: "analyze_natural_dynamics", arguments: {} });
 	assert.strictEqual(bad.isError, true);
 	await Promise.all([client.close(), server.close()]);
 });

@@ -30,7 +30,7 @@ test("generated dynamics get the verdict they were made for", () => {
 	]) {
 		const g = tools.generateNaturalDynamics({ length: 512, dynamics, seed: 3 });
 		assert.strictEqual(g.verdict, verdict, `${dynamics}: alpha ${g.measuredAlpha}`);
-		const a = tools.analyzeDynamics({ series: g.series });
+		const a = tools.analyzeNaturalDynamics({ series: g.series });
 		assert.strictEqual(a.verdict, verdict);
 		assert.strictEqual(a.overall.alpha, g.measuredAlpha);
 	}
@@ -50,7 +50,7 @@ test("generate honours range, integers, targetAlpha and files", () => {
 	assert.strictEqual(g.outputFile, file);
 	assert.strictEqual(g.series, undefined);
 	assert.strictEqual(g.requested.dynamics, "custom");
-	const a = tools.analyzeDynamics({ filePath: file, column: "value" });
+	const a = tools.analyzeNaturalDynamics({ filePath: file, column: "value" });
 	assert.strictEqual(a.points, 300);
 	assert.strictEqual(a.overall.alpha, g.measuredAlpha);
 
@@ -61,10 +61,10 @@ test("generate honours range, integers, targetAlpha and files", () => {
 
 test("analysis warns on short series and rejects bad input", () => {
 	const g = tools.generateNaturalDynamics({ length: 32, seed: 1 });
-	const a = tools.analyzeDynamics({ series: g.series });
+	const a = tools.analyzeNaturalDynamics({ series: g.series });
 	assert.strictEqual(a.longTerm, null);
 	assert.ok(a.warnings.length === 2);
-	assert.throws(() => tools.analyzeDynamics({ series: [1, 2, 3] }), /at least 16/);
+	assert.throws(() => tools.analyzeNaturalDynamics({ series: [1, 2, 3] }), /at least 16/);
 	assert.throws(() => tools.generateNaturalDynamics({ length: 4 }), /length/);
 	assert.throws(() => tools.generateNaturalDynamics({ min: 5, max: 1 }), /min/);
 });

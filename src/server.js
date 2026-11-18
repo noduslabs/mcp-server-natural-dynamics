@@ -13,7 +13,7 @@ function createServer() {
 	const server = new McpServer({ name: "natural-dynamics-mcp", version });
 
 	server.registerTool(
-		"analyze_dynamics",
+		"analyze_natural_dynamics",
 		{
 			title: "How natural is this time series?",
 			description:
@@ -42,7 +42,7 @@ function createServer() {
 			},
 			annotations: { readOnlyHint: true, openWorldHint: false },
 		},
-		async (params) => asResult(tools.analyzeDynamics(params))
+		async (params) => asResult(tools.analyzeNaturalDynamics(params))
 	);
 
 	server.registerTool(

@@ -65,7 +65,7 @@ opens the MCP Inspector in the browser, where you can call both tools by hand. `
 
 ## Tools
 
-### `analyze_dynamics`
+### `analyze_natural_dynamics`
 
 Gives a verdict on any series of numbers: heart rate or RR intervals, steps, prices, sensor readings, traffic.
 
